@@ -4,7 +4,9 @@ import type { AppRouter } from "../server/router";
 import type { AppType } from "next/dist/shared/lib/utils";
 import superjson from "superjson";
 import Head from "next/head";
-import { MantineProvider } from "@mantine/core";
+import { AppShell, MantineProvider } from "@mantine/core";
+import { Navbar } from "../components/Navbar";
+import { Header } from "../components/Header";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
@@ -17,15 +19,22 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         />
       </Head>
 
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{
-          /** Put your mantine theme override here */
-          colorScheme: "dark",
-        }}
-      >
-        <Component {...pageProps} />
+      <MantineProvider withGlobalStyles withNormalizeCSS>
+        <AppShell
+          padding="md"
+          navbar={<Navbar />}
+          header={<Header />}
+          styles={(theme) => ({
+            main: {
+              backgroundColor:
+                theme.colorScheme === "dark"
+                  ? theme.colors.dark[8]
+                  : theme.colors.gray[0],
+            },
+          })}
+        >
+          <Component {...pageProps} />
+        </AppShell>
       </MantineProvider>
     </>
   );
