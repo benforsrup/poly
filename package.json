@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mantine/core": "^4.2.12",
+    "@mantine/hooks": "^4.2.12",
+    "@mantine/next": "^4.2.12",
     "@trpc/client": "^9.26.1",
     "@trpc/next": "^9.26.1",
     "@trpc/react": "^9.26.1",
